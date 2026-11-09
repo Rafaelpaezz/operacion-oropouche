@@ -1,319 +1,627 @@
 
 import streamlit as st
-from utils.state import initialize_state
 
-initialize_state()
+from utils.state import (
+    initialize_state,
+    load_cases,
+    get_score,
+    get_progress,
+    get_completed_count,
+    get_total_cases
+)
+
+from utils.theme import apply_theme
+
+
+# =========================================================
+# 1. CONFIGURACIÓN GENERAL
+# =========================================================
 
 st.set_page_config(
-    page_title="OPERACIÓN OROPOUCHE",
-    page_icon="🦟",
+    page_title="Operación Oropouche | Centro de investigación",
+    page_icon="🩺",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# -----------------------------------------
-# ESTILOS GENERALES
-# -----------------------------------------
+initialize_state()
+apply_theme("inicio")
+
+
+# =========================================================
+# 2. ESTILOS DE LA PORTADA
+# =========================================================
 
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-html, body, [class*="css"] {
-    font-family: 'Inter', sans-serif;
+/* PORTADA PRINCIPAL */
+
+.st-key-home_hero {
+    background:
+        radial-gradient(
+            circle at 90% 15%,
+            rgba(111, 171, 153, 0.25),
+            transparent 30%
+        ),
+        linear-gradient(
+            112deg,
+            #142F3A 0%,
+            #1B4550 65%,
+            #245B5D 100%
+        );
+    border-radius: 12px;
+    padding: 35px 38px;
+    border-bottom: 4px solid #398E7D;
+    margin-bottom: 28px;
 }
 
-.stApp {
-    background: #0b1220;
-    color: #edf2f7;
+.st-key-home_hero h1 {
+    color: #FFFFFF !important;
+    font-size: clamp(32px, 4vw, 46px) !important;
+    line-height: 1.15 !important;
+    font-weight: 850 !important;
+    margin-top: 8px;
+    margin-bottom: 15px;
 }
 
-[data-testid="stSidebar"] {
-    background: #101b2d;
-    border-right: 1px solid #24334a;
-}
-
-[data-testid="stSidebar"] * {
-    color: #e5edf7;
-}
-
-#MainMenu, footer, header {
-    visibility: hidden;
-}
-
-.block-container {
-    padding-top: 2.2rem;
-    padding-bottom: 3rem;
-    max-width: 1450px;
-}
-
-.hero {
-    background: linear-gradient(115deg, #122d42 0%, #145b62 55%, #167b75 100%);
-    border: 1px solid #277d80;
-    border-radius: 20px;
-    padding: 35px;
-    margin-bottom: 25px;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-label {
-    color: #a8e9dc;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-.hero h1 {
-    font-size: 36px;
-    line-height: 1.15;
-    color: white;
-    font-weight: 800;
-    margin: 14px 0;
-}
-
-.hero p {
-    color: #d0e8e8;
+.st-key-home_hero p {
+    color: #E0EBE8 !important;
     font-size: 15px;
-    max-width: 650px;
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
-.section-title {
-    font-size: 21px;
-    font-weight: 700;
-    color: #f1f5f9;
-    margin: 25px 0 15px;
-}
-
-.metric-card {
-    background: #142237;
-    border: 1px solid #263b54;
-    border-radius: 15px;
-    padding: 19px;
-    min-height: 125px;
-}
-
-.metric-label {
-    color: #9eb0c5;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.metric-value {
-    font-size: 27px;
-    font-weight: 800;
-    color: #f1f5f9;
-    margin-top: 9px;
-}
-
-.metric-note {
+.st-key-home_hero [data-testid="stCaptionContainer"] p {
+    color: #A9D6CA !important;
     font-size: 11px;
-    color: #91cfc1;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+}
+
+.st-key-home_hero hr {
+    border-color: rgba(255,255,255,0.18);
+}
+
+/* BOTÓN PRINCIPAL DE PORTADA */
+
+.st-key-home_hero .stButton > button {
+    background: #A9D6CA;
+    color: #173C43;
+    border: 1px solid #A9D6CA;
+    border-radius: 7px;
+    font-weight: 800;
+    min-height: 46px;
+}
+
+.st-key-home_hero .stButton > button:hover {
+    background: #FFFFFF;
+    color: #173C43;
+    border-color: #FFFFFF;
+}
+
+/* TÍTULOS DE SECCIÓN */
+
+.home-section-label {
+    color: #398E7D;
+    font-size: 11px;
+    font-weight: 850;
+    letter-spacing: 1.5px;
+    margin-bottom: 5px;
+}
+
+.home-section-description {
+    color: #607278;
+    font-size: 13px;
+    margin-top: -8px;
+    margin-bottom: 18px;
+}
+
+/* IDENTIDAD DE LA BARRA LATERAL */
+
+.sidebar-brand {
+    padding: 10px 0 19px 0;
+    border-bottom: 1px solid #DCE4E1;
+    margin-bottom: 16px;
+}
+
+.sidebar-brand-title {
+    color: #1B4550;
+    font-size: 17px;
+    font-weight: 900;
+    letter-spacing: 0.3px;
+}
+
+.sidebar-brand-subtitle {
+    color: #607278;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
     margin-top: 5px;
 }
 
-.module-card {
-    background: #142237;
-    border: 1px solid #293d55;
-    border-radius: 15px;
-    padding: 20px;
-    min-height: 180px;
-    margin-bottom: 12px;
+/* BOTONES DE NAVEGACIÓN */
+
+[data-testid="stSidebar"] .stButton > button {
+    text-align: left;
+    justify-content: flex-start;
+    background: transparent;
+    color: #29434A;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    font-weight: 650;
+    min-height: 39px;
+    padding-left: 12px;
 }
 
-.module-icon {
-    font-size: 27px;
-    margin-bottom: 12px;
+[data-testid="stSidebar"] .stButton > button:hover {
+    background: #EAF2EF;
+    color: #1B655A;
+    border-color: #D7E7E0;
 }
 
-.module-card h3 {
-    font-size: 16px;
-    color: #f1f5f9;
-    margin-bottom: 8px;
+/* MÓDULOS */
+
+.module-number {
+    color: #398E7D;
+    font-size: 11px;
+    font-weight: 850;
+    letter-spacing: 1.3px;
 }
 
-.module-card p {
-    color: #9fb1c5;
-    font-size: 12px;
-    line-height: 1.6;
+.module-description {
+    color: #607278;
+    font-size: 13px;
+    line-height: 1.65;
+    min-height: 43px;
 }
 
-.info-panel {
-    background: #142237;
-    border: 1px solid #293d55;
-    border-radius: 15px;
-    padding: 22px;
+/* BOTONES DE MÓDULOS */
+
+.module-button .stButton > button {
+    border-radius: 7px;
+    min-height: 40px;
 }
 
-div.stButton > button {
-    background: #167d76;
-    color: white;
-    border: 1px solid #299c90;
-    border-radius: 9px;
-    font-weight: 600;
-    min-height: 42px;
+/* EXPEDIENTE ACTIVO */
+
+.st-key-active_case_panel {
+    background: #FFFFFF;
+    border-left: 4px solid #398E7D;
+    border-radius: 7px;
+    padding: 15px 20px;
 }
 
-div.stButton > button:hover {
-    background: #20958a;
-    color: white;
-    border-color: #52c7b7;
+/* PIE DE PÁGINA */
+
+.home-footer {
+    color: #607278;
+    font-size: 11px;
+    line-height: 1.8;
+    text-align: center;
+    padding: 15px 0 5px 0;
 }
 
-hr {
-    border-color: #293d55;
+/* AJUSTES RESPONSIVE */
+
+@media (max-width: 768px) {
+    .st-key-home_hero {
+        padding: 23px 20px;
+    }
+
+    .st-key-home_hero h1 {
+        font-size: 31px !important;
+    }
 }
 
 </style>
 """, unsafe_allow_html=True)
 
-# -----------------------------------------
-# BARRA LATERAL
-# -----------------------------------------
+
+# =========================================================
+# 3. DATOS DE LA INVESTIGACIÓN
+# =========================================================
+
+cases = load_cases()
+
+if not isinstance(cases, dict):
+    cases = {}
+
+total_cases = get_total_cases()
+completed = get_completed_count()
+score = get_score()
+
+progress = max(
+    0,
+    min(100, get_progress() * 100)
+)
+
+user_name = st.session_state.get(
+    "user_name",
+    "Investigador"
+)
+
+if not user_name or not user_name.strip():
+    user_name = "Investigador"
+
+
+# =========================================================
+# 4. NAVEGACIÓN
+# =========================================================
+
+modules = [
+    (
+        "01",
+        "Inteligencia epidemiológica",
+        "Estudia la circulación de arbovirus, vectores y contexto epidemiológico.",
+        "pages/1_Epidemiologia.py"
+    ),
+    (
+        "02",
+        "Biblioteca científica",
+        "Consulta agentes etiológicos, manifestaciones clínicas y diferencias.",
+        "pages/2_Base_Cientifica.py"
+    ),
+    (
+        "03",
+        "Expedientes clínicos",
+        "Analiza pacientes, síntomas, antecedentes y factores de exposición.",
+        "pages/3_Pacientes.py"
+    ),
+    (
+        "04",
+        "Laboratorio",
+        "Solicita pruebas diagnósticas y analiza los resultados simulados.",
+        "pages/4_Laboratorio.py"
+    ),
+    (
+        "05",
+        "Asistente educativo",
+        "Consulta conceptos y resuelve dudas sobre las enfermedades estudiadas.",
+        "pages/5_Asistente_IA.py"
+    ),
+    (
+        "06",
+        "Desafíos médicos",
+        "Resuelve los casos y justifica tus decisiones diagnósticas.",
+        "pages/6_Desafios.py"
+    ),
+    (
+        "07",
+        "Resultados y evaluación",
+        "Revisa tu puntuación, progreso e historial de investigaciones.",
+        "pages/7_Resultados.py"
+    )
+]
+
+
+# =========================================================
+# 5. BARRA LATERAL
+# =========================================================
 
 with st.sidebar:
-    st.markdown("## 🦟 OROPOUCHE")
-    st.caption("PLATAFORMA DE SIMULACIÓN EPIDEMIOLÓGICA")
+
+    st.markdown("""
+    <div class="sidebar-brand">
+        <div class="sidebar-brand-title">
+            OPERACIÓN OROPOUCHE
+        </div>
+        <div class="sidebar-brand-subtitle">
+            INVESTIGACIÓN EN SALUD PÚBLICA
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.caption("PERFIL DEL INVESTIGADOR")
+
+    new_name = st.text_input(
+        "Nombre del investigador",
+        value=user_name,
+        placeholder="Escribe tu nombre",
+        label_visibility="collapsed",
+        key="user_name_input"
+    )
+
+    if new_name.strip():
+        st.session_state.user_name = new_name.strip()
+
+    st.caption("Investigador en formación")
+
     st.divider()
 
-    st.markdown("### NAVEGACIÓN")
-    st.page_link("app.py", label="Panel principal", icon="🏠")
+    st.caption("NAVEGACIÓN PRINCIPAL")
 
-    st.markdown("### MÓDULOS")
-    st.page_link("pages/1_Epidemiologia.py", label="Epidemiología", icon="🌎")
-    st.page_link("pages/2_Base_Cientifica.py", label="Base científica", icon="🧬")
-    st.page_link("pages/3_Pacientes.py", label="Pacientes", icon="🩺")
-    st.page_link("pages/4_Laboratorio.py", label="Laboratorio", icon="🔬")
-    st.page_link("pages/5_Asistente_IA.py", label="Asistente IA", icon="🤖")
-    st.page_link("pages/6_Desafios.py", label="Desafíos", icon="🎯")
-    st.page_link("pages/7_Resultados.py", label="Resultados", icon="📊")
+    for number, title, description, path in modules:
+
+        if st.button(
+            title,
+            key=f"sidebar_{number}",
+            use_container_width=True
+        ):
+            st.switch_page(path)
 
     st.divider()
-    st.markdown("**OPERACIÓN OROPOUCHE**")
-    st.caption("Simulador educativo de epidemiología y entrenamiento clínico.")
-    st.caption("Versión inicial 0.1.0")
 
-# -----------------------------------------
-# ENCABEZADO
-# -----------------------------------------
+    st.caption("ESTADO DE INVESTIGACIÓN")
 
-st.markdown("""
-<div class="hero">
-    <div class="hero-label">CENTRO DE OPERACIONES · VIGILANCIA EPIDEMIOLÓGICA</div>
-    <h1>OPERACIÓN<br>OROPOUCHE</h1>
-    <p>
-        Bienvenido al centro de simulación epidemiológica.
-        Analiza escenarios, investiga casos clínicos, interpreta
-        resultados de laboratorio y toma decisiones basadas
-        en evidencia científica frente al virus Oropouche.
-    </p>
-</div>
-""", unsafe_allow_html=True)
+    st.write(
+        f"Expedientes resueltos: {completed} de {total_cases}"
+    )
 
-# -----------------------------------------
-# INDICADORES
-# -----------------------------------------
+    st.progress(progress / 100)
 
-st.markdown('<div class="section-title">Panel de operaciones</div>',
-            unsafe_allow_html=True)
+    st.write(f"Puntuación acumulada: **{score} puntos**")
+
+    st.divider()
+
+    st.caption("Proyecto académico · Colombia")
+    st.caption("Casos y resultados simulados.")
+
+
+# =========================================================
+# 6. PORTADA PRINCIPAL
+# =========================================================
+
+with st.container(key="home_hero"):
+
+    st.caption(
+        "CENTRO DE INVESTIGACIÓN EPIDEMIOLÓGICA"
+    )
+
+    st.title("El retorno de Oropouche")
+
+    st.write(
+        f"Bienvenido, {st.session_state.user_name}. "
+        "Investiga los casos clínicos, analiza la evidencia "
+        "de laboratorio y estudia los desafíos del diagnóstico "
+        "diferencial frente al dengue endémico en Colombia."
+    )
+
+    st.divider()
+
+    st.caption(
+        "PLATAFORMA ACADÉMICA · VIGILANCIA · "
+        "INVESTIGACIÓN · DIAGNÓSTICO DIFERENCIAL"
+    )
+
+    if st.button(
+        "Comenzar investigación",
+        key="start_investigation",
+        use_container_width=False
+    ):
+        st.switch_page("pages/3_Pacientes.py")
+
+
+# =========================================================
+# 7. RESUMEN DE INVESTIGACIÓN
+# =========================================================
+
+st.markdown(
+    '<div class="home-section-label">SEGUIMIENTO</div>',
+    unsafe_allow_html=True
+)
+
+st.subheader("Resumen de investigación")
+
+st.markdown(
+    '<div class="home-section-description">'
+    'Consulta el estado actual de tu actividad en la plataforma.'
+    '</div>',
+    unsafe_allow_html=True
+)
 
 c1, c2, c3, c4 = st.columns(4)
 
-metrics = [
-    (c1, "ESTADO DEL SIMULADOR", "ACTIVO", "Entorno de entrenamiento"),
-    (c2, "MÓDULOS", "07", "Áreas de aprendizaje"),
-    (c3, "CASOS CLÍNICOS", "EN PREPARACIÓN", "Escenarios educativos"),
-    (c4, "ASISTENTE IA", "PENDIENTE", "Integración programada")
-]
+with c1:
+    st.metric(
+        "Expedientes resueltos",
+        f"{completed}/{total_cases}"
+    )
 
-for col, label, value, note in metrics:
-    with col:
-        st.markdown(f"""
-        <div class="metric-card">
-            <div class="metric-label">{label}</div>
-            <div class="metric-value">{value}</div>
-            <div class="metric-note">{note}</div>
-        </div>
-        """, unsafe_allow_html=True)
+with c2:
+    st.metric(
+        "Puntuación acumulada",
+        score
+    )
 
-# -----------------------------------------
-# MÓDULOS
-# -----------------------------------------
+with c3:
+    st.metric(
+        "Progreso general",
+        f"{progress:.0f}%"
+    )
 
-st.markdown('<div class="section-title">Áreas de entrenamiento</div>',
-            unsafe_allow_html=True)
+with c4:
 
-modules = [
-    ("🌎", "Epidemiología", "Explora la distribución, transmisión y comportamiento epidemiológico del virus."),
-    ("🧬", "Base científica", "Consulta conceptos, características del virus y fundamentos científicos."),
-    ("🩺", "Pacientes", "Analiza historias clínicas y desarrolla escenarios de atención."),
-    ("🔬", "Laboratorio", "Interpreta pruebas diagnósticas y resultados de laboratorio."),
-    ("🤖", "Asistente IA", "Obtén orientación y apoyo para resolver los escenarios de aprendizaje."),
-    ("🎯", "Desafíos", "Resuelve retos clínicos y epidemiológicos mediante toma de decisiones."),
-    ("📊", "Resultados", "Consulta tu desempeño y evolución durante la simulación.")
-]
+    status = (
+        "Finalizada"
+        if total_cases > 0 and completed >= total_cases
+        else "En curso"
+    )
 
-for row in range(0, 7, 3):
-    cols = st.columns(3)
-    for col, item in zip(cols, modules[row:row+3]):
-        icon, title, description = item
-        with col:
-            st.markdown(f"""
-            <div class="module-card">
-                <div class="module-icon">{icon}</div>
-                <h3>{title}</h3>
-                <p>{description}</p>
-            </div>
-            """, unsafe_allow_html=True)
+    st.metric(
+        "Estado",
+        status
+    )
 
-# -----------------------------------------
-# INFORMACIÓN INFERIOR
-# -----------------------------------------
+st.progress(progress / 100)
 
-st.markdown('<div class="section-title">Centro de información</div>',
-            unsafe_allow_html=True)
 
-left, right = st.columns([1.5, 1])
+# =========================================================
+# 8. INVESTIGACIÓN ACTUAL
+# =========================================================
 
-with left:
-    st.markdown("""
-    <div class="info-panel">
-        <h3>🦟 Sobre la operación</h3>
-        <p style="color:#a9bbce; line-height:1.8; font-size:13px;">
-        OPERACIÓN OROPOUCHE es un entorno interactivo de aprendizaje
-        diseñado para fortalecer los conocimientos sobre epidemiología,
-        diagnóstico y análisis de escenarios relacionados con el virus
-        Oropouche.
-        </p>
-        <p style="color:#91cfc1; font-size:12px;">
-        Aprendizaje · Investigación · Análisis · Toma de decisiones
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-
-with right:
-    st.markdown("""
-    <div class="info-panel">
-        <h3>📌 Estado del proyecto</h3>
-        <p style="color:#a9bbce; font-size:13px;">
-        Fase 1: Construcción de la plataforma
-        </p>
-        <p style="color:#91cfc1; font-size:12px;">
-        ● Entorno de desarrollo configurado
-        </p>
-        <p style="color:#91cfc1; font-size:12px;">
-        ● Interfaz inicial en construcción
-        </p>
-        <p style="color:#9eb0c5; font-size:12px;">
-        ○ Módulos funcionales pendientes
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-
-st.markdown("---")
-st.caption(
-    "OPERACIÓN OROPOUCHE · Plataforma educativa de simulación. "
-    "No sustituye el diagnóstico ni la orientación de profesionales de salud."
+st.markdown(
+    '<div class="home-section-label">EXPEDIENTES</div>',
+    unsafe_allow_html=True
 )
+
+st.subheader("Investigación en curso")
+
+st.markdown(
+    '<div class="home-section-description">'
+    'Retoma el expediente activo o comienza una nueva evaluación.'
+    '</div>',
+    unsafe_allow_html=True
+)
+
+active_case_id = st.session_state.get("active_case_id")
+
+if active_case_id and active_case_id in cases:
+
+    active_case = cases[active_case_id]
+
+    case_title = active_case.get(
+        "titulo",
+        "Expediente clínico activo"
+    )
+
+    with st.container(key="active_case_panel"):
+
+        st.caption("EXPEDIENTE ACTIVO")
+
+        st.markdown(f"**{case_title}**")
+
+        st.write(
+            "Continúa revisando los antecedentes, los hallazgos "
+            "clínicos y las pruebas diagnósticas de este expediente."
+        )
+
+        if st.button(
+            "Continuar con el expediente",
+            key="continue_active_case"
+        ):
+            st.switch_page("pages/3_Pacientes.py")
+
+else:
+
+    st.write(
+        "Todavía no tienes un expediente activo. "
+        "Puedes comenzar revisando los casos clínicos disponibles."
+    )
+
+    if st.button(
+        "Consultar expedientes clínicos",
+        key="open_patient_files"
+    ):
+        st.switch_page("pages/3_Pacientes.py")
+
+
+# =========================================================
+# 9. ÁREAS DE INVESTIGACIÓN
+# =========================================================
+
+st.markdown(
+    '<div class="home-section-label">PLATAFORMA</div>',
+    unsafe_allow_html=True
+)
+
+st.subheader("Áreas de investigación")
+
+st.markdown(
+    '<div class="home-section-description">'
+    'Accede a las diferentes herramientas de análisis y aprendizaje.'
+    '</div>',
+    unsafe_allow_html=True
+)
+
+for start in range(0, len(modules), 2):
+
+    columns = st.columns(2)
+
+    for col, module in zip(
+        columns,
+        modules[start:start + 2]
+    ):
+
+        number, title, description, path = module
+
+        with col:
+
+            st.markdown(
+                f'<div class="module-number">ÁREA {number}</div>',
+                unsafe_allow_html=True
+            )
+
+            st.markdown(f"### {title}")
+
+            st.markdown(
+                f'<div class="module-description">'
+                f'{description}'
+                f'</div>',
+                unsafe_allow_html=True
+            )
+
+            st.write("")
+
+            if st.button(
+                "Ingresar al módulo",
+                key=f"open_module_{number}",
+                use_container_width=True
+            ):
+                st.switch_page(path)
+
+            st.write("")
+
+
+# =========================================================
+# 10. METODOLOGÍA DE INVESTIGACIÓN
+# =========================================================
+
+st.markdown(
+    '<div class="home-section-label">METODOLOGÍA</div>',
+    unsafe_allow_html=True
+)
+
+st.subheader("Etapas de la investigación")
+
+st.markdown(
+    '<div class="home-section-description">'
+    'Conoce el procedimiento que debes seguir durante cada caso clínico.'
+    '</div>',
+    unsafe_allow_html=True
+)
+
+with st.expander("Consultar las etapas de la investigación"):
+
+    steps = [
+        (
+            "01. Revisión del expediente",
+            "Estudia los datos del paciente, sus antecedentes y el motivo de consulta."
+        ),
+        (
+            "02. Análisis clínico y epidemiológico",
+            "Identifica síntomas, signos de alarma y factores de exposición."
+        ),
+        (
+            "03. Selección de pruebas",
+            "Solicita las pruebas de laboratorio pertinentes para el escenario."
+        ),
+        (
+            "04. Interpretación de resultados",
+            "Compara los hallazgos con las características de las enfermedades."
+        ),
+        (
+            "05. Diagnóstico diferencial",
+            "Selecciona una respuesta y revisa la retroalimentación del caso."
+        )
+    ]
+
+    for title, description in steps:
+
+        st.markdown(f"**{title}**")
+        st.write(description)
+
+
+# =========================================================
+# 11. PIE DE PÁGINA
+# =========================================================
+
+st.divider()
+
+st.markdown("""
+<div class="home-footer">
+    <strong>OPERACIÓN OROPOUCHE</strong><br>
+    Proyecto académico de diagnóstico diferencial en arbovirosis.<br>
+    Los pacientes y resultados son simulados con fines educativos.<br>
+    Esta plataforma no sustituye la valoración médica ni los protocolos clínicos oficiales.
+</div>
+""", unsafe_allow_html=True)
