@@ -1,0 +1,207 @@
+
+{
+  "caso_001": {
+    "titulo": "Fiebre persistente en zona rural",
+    "paciente": "Paciente 001",
+    "edad": 27,
+    "sexo": "Masculino",
+    "ubicacion": "Zona rural de Colombia",
+    "dia_evolucion": 3,
+    "motivo_consulta": "Fiebre de inicio agudo acompañada de cefalea intensa y dolores musculares.",
+    "sintomas": [
+      "Fiebre",
+      "Cefalea intensa",
+      "Mialgia",
+      "Escalofríos",
+      "Náuseas"
+    ],
+    "signos_vitales": {
+      "temperatura": "38.7 °C",
+      "presion_arterial": "115/75 mmHg",
+      "frecuencia_cardiaca": "96 lpm",
+      "saturacion": "98%"
+    },
+    "antecedentes": "Sin antecedentes médicos relevantes reportados.",
+    "exposicion": "Estuvo en una zona rural con presencia abundante de insectos durante los últimos días.",
+    "signos_alarma": [],
+    "diagnostico_correcto": "oropouche",
+    "explicacion": "El escenario simulado presenta un resultado molecular positivo para Oropouche. La exposición epidemiológica y las manifestaciones clínicas orientan la investigación, pero no permiten distinguirlo con certeza del dengue sin pruebas de laboratorio.",
+    "advertencia_academica": "Paciente y resultados completamente ficticios, diseñados exclusivamente para el aprendizaje del diagnóstico diferencial.",
+    "pruebas": {
+      "hemograma": {
+        "nombre": "Hemograma",
+        "resultado": "Leucocitos: 4.200/mm³. Plaquetas: 178.000/mm³.",
+        "interpretacion": "Resultados simulados que no confirman una etiología específica."
+      },
+      "dengue_pcr": {
+        "nombre": "RT-PCR para dengue",
+        "resultado": "Negativo",
+        "interpretacion": "No se detecta ARN del virus del dengue en esta muestra simulada. La interpretación debe considerar el momento de toma de la muestra y las características de la prueba."
+      },
+      "oropouche_pcr": {
+        "nombre": "RT-PCR para Oropouche",
+        "resultado": "Positivo",
+        "interpretacion": "Se detecta ARN del virus Oropouche en el escenario simulado."
+      },
+      "chikungunya_pcr": {
+        "nombre": "RT-PCR para chikungunya",
+        "resultado": "Negativo",
+        "interpretacion": "No se detecta ARN del virus chikungunya en esta muestra simulada."
+      }
+    }
+  },
+  "caso_002": {
+    "titulo": "Dolor articular incapacitante",
+    "paciente": "Paciente 002",
+    "edad": 34,
+    "sexo": "Femenino",
+    "ubicacion": "Municipio con presencia de Aedes",
+    "dia_evolucion": 4,
+    "motivo_consulta": "Fiebre acompañada de dolor articular intenso que dificulta caminar.",
+    "sintomas": [
+      "Fiebre",
+      "Artralgia intensa",
+      "Inflamación articular",
+      "Mialgia",
+      "Exantema"
+    ],
+    "signos_vitales": {
+      "temperatura": "38.5 °C",
+      "presion_arterial": "110/70 mmHg",
+      "frecuencia_cardiaca": "102 lpm",
+      "saturacion": "97%"
+    },
+    "antecedentes": "No refiere enfermedades crónicas.",
+    "exposicion": "Reside en un sector urbano con presencia frecuente de mosquitos.",
+    "signos_alarma": [],
+    "diagnostico_correcto": "chikungunya",
+    "explicacion": "La artralgia intensa y la inflamación articular son pistas clínicas relevantes para orientar el diagnóstico diferencial hacia chikungunya. El resultado molecular simulado permite resolver el caso educativo.",
+    "advertencia_academica": "Paciente y resultados completamente ficticios, diseñados exclusivamente para el aprendizaje del diagnóstico diferencial.",
+    "pruebas": {
+      "hemograma": {
+        "nombre": "Hemograma",
+        "resultado": "Leucocitos: 5.100/mm³. Plaquetas: 190.000/mm³.",
+        "interpretacion": "Resultado inespecífico en este escenario."
+      },
+      "chikungunya_pcr": {
+        "nombre": "RT-PCR para chikungunya",
+        "resultado": "Positivo",
+        "interpretacion": "Se detecta ARN del virus chikungunya en la muestra simulada."
+      },
+      "dengue_pcr": {
+        "nombre": "RT-PCR para dengue",
+        "resultado": "Negativo",
+        "interpretacion": "No se detecta ARN del virus del dengue en esta muestra simulada."
+      },
+      "zika_pcr": {
+        "nombre": "RT-PCR para Zika",
+        "resultado": "Negativo",
+        "interpretacion": "No se detecta ARN del virus Zika en esta muestra simulada."
+      }
+    }
+  },
+  "caso_003": {
+    "titulo": "Fiebre con signos de alarma",
+    "paciente": "Paciente 003",
+    "edad": 22,
+    "sexo": "Masculino",
+    "ubicacion": "Zona urbana con circulación de dengue",
+    "dia_evolucion": 5,
+    "motivo_consulta": "Fiebre que ha disminuido, pero aparece dolor abdominal intenso y vómitos persistentes.",
+    "sintomas": [
+      "Fiebre previa",
+      "Dolor abdominal intenso",
+      "Vómitos persistentes",
+      "Debilidad",
+      "Malestar general"
+    ],
+    "signos_vitales": {
+      "temperatura": "37.8 °C",
+      "presion_arterial": "95/65 mmHg",
+      "frecuencia_cardiaca": "112 lpm",
+      "saturacion": "96%"
+    },
+    "antecedentes": "Sin antecedentes relevantes reportados.",
+    "exposicion": "Reside en una zona con circulación conocida de dengue.",
+    "signos_alarma": [
+      "Dolor abdominal intenso",
+      "Vómitos persistentes"
+    ],
+    "hallazgos_relevantes": [
+      "Taquicardia de 112 lpm",
+      "Presión arterial de 95/65 mmHg que requiere valoración clínica en contexto",
+      "Hematocrito elevado respecto al valor basal simulado",
+      "Plaquetas disminuidas"
+    ],
+    "diagnostico_correcto": "dengue",
+    "explicacion": "El caso simulado presenta signos de alarma compatibles con dengue, especialmente dolor abdominal intenso y vómitos persistentes. Se debe priorizar la valoración clínica urgente. La taquicardia, la presión arterial y los resultados hematológicos requieren interpretación conjunta. Una presión arterial de 95/65 mmHg por sí sola no confirma shock. No debe retrasarse la atención para completar el ejercicio.",
+    "advertencia_academica": "Paciente y resultados completamente ficticios. Este caso representa una situación educativa de riesgo y no sustituye la evaluación médica ni los protocolos oficiales de atención.",
+    "pruebas": {
+      "hemograma": {
+        "nombre": "Hemograma",
+        "resultado": "Plaquetas: 78.000/mm³. Hematocrito: elevado respecto al valor basal simulado.",
+        "interpretacion": "La trombocitopenia y el aumento del hematocrito son hallazgos que requieren valoración en el contexto clínico y seguimiento de su evolución."
+      },
+      "dengue_ns1": {
+        "nombre": "Antígeno NS1 para dengue",
+        "resultado": "Positivo",
+        "interpretacion": "Resultado positivo en el escenario educativo simulado."
+      },
+      "dengue_pcr": {
+        "nombre": "RT-PCR para dengue",
+        "resultado": "Positivo",
+        "interpretacion": "Se detecta ARN del virus del dengue en la muestra simulada."
+      },
+      "oropouche_pcr": {
+        "nombre": "RT-PCR para Oropouche",
+        "resultado": "Negativo",
+        "interpretacion": "No se detecta ARN del virus Oropouche en esta muestra simulada."
+      }
+    }
+  },
+  "caso_004": {
+    "titulo": "Fiebre y erupción cutánea",
+    "paciente": "Paciente 004",
+    "edad": 29,
+    "sexo": "Femenino",
+    "ubicacion": "Zona urbana",
+    "dia_evolucion": 2,
+    "motivo_consulta": "Erupción cutánea con prurito, ojos enrojecidos y fiebre leve.",
+    "sintomas": [
+      "Exantema",
+      "Prurito",
+      "Conjuntivitis no purulenta",
+      "Fiebre leve",
+      "Artralgia"
+    ],
+    "signos_vitales": {
+      "temperatura": "37.9 °C",
+      "presion_arterial": "112/72 mmHg",
+      "frecuencia_cardiaca": "88 lpm",
+      "saturacion": "99%"
+    },
+    "antecedentes": "Se debe indagar posibilidad de embarazo y antecedentes relevantes.",
+    "exposicion": "Reside en un municipio con presencia de mosquitos Aedes.",
+    "signos_alarma": [],
+    "diagnostico_correcto": "zika",
+    "explicacion": "El cuadro es compatible con Zika en el escenario simulado. El exantema pruriginoso y la conjuntivitis no purulenta orientan el diagnóstico diferencial. La confirmación se apoya en el resultado de laboratorio y no exclusivamente en la apariencia de la erupción.",
+    "advertencia_academica": "Paciente y resultados completamente ficticios, diseñados exclusivamente para el aprendizaje del diagnóstico diferencial.",
+    "pruebas": {
+      "zika_pcr": {
+        "nombre": "RT-PCR para Zika",
+        "resultado": "Positivo",
+        "interpretacion": "Se detecta ARN del virus Zika en la muestra simulada."
+      },
+      "dengue_pcr": {
+        "nombre": "RT-PCR para dengue",
+        "resultado": "Negativo",
+        "interpretacion": "No se detecta ARN del virus del dengue en esta muestra simulada."
+      },
+      "chikungunya_pcr": {
+        "nombre": "RT-PCR para chikungunya",
+        "resultado": "Negativo",
+        "interpretacion": "No se detecta ARN del virus chikungunya en esta muestra simulada."
+      }
+    }
+  }
+}

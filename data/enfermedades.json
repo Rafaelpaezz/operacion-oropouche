@@ -1,0 +1,209 @@
+
+{
+  "dengue": {
+    "nombre": "Dengue",
+    "categoria": "Arbovirosis",
+    "descripcion": "Enfermedad viral transmitida principalmente por mosquitos del género Aedes.",
+    "agente": "Virus del dengue (DENV 1-4)",
+    "vector": "Aedes aegypti",
+    "manifestaciones": [
+      "Fiebre",
+      "Cefalea",
+      "Dolor retroocular",
+      "Mialgia",
+      "Artralgia",
+      "Náuseas",
+      "Exantema"
+    ],
+    "pistas": [
+      "Dolor retroocular",
+      "Dolor muscular y articular",
+      "Trombocitopenia",
+      "Signos de alarma que requieren valoración clínica oportuna"
+    ],
+    "pruebas": [
+      "Hemograma",
+      "Antígeno NS1",
+      "RT-PCR para dengue",
+      "IgM para dengue"
+    ],
+    "consideraciones": "Los signos de alarma deben identificarse oportunamente. La selección e interpretación de las pruebas depende del día de evolución. Ningún síntoma aislado confirma dengue."
+  },
+  "oropouche": {
+    "nombre": "Oropouche",
+    "categoria": "Arbovirosis",
+    "descripcion": "Enfermedad viral transmitida principalmente por jejenes del género Culicoides en las zonas donde circula el virus.",
+    "agente": "Virus Oropouche (OROV)",
+    "vector": "Culicoides paraensis, principal vector asociado a la transmisión en América",
+    "manifestaciones": [
+      "Fiebre de inicio agudo",
+      "Cefalea intensa",
+      "Mialgia",
+      "Artralgia",
+      "Escalofríos",
+      "Náuseas",
+      "Fotofobia"
+    ],
+    "pistas": [
+      "Antecedente de exposición en zonas con circulación del virus",
+      "Fiebre y cefalea intensa",
+      "Posibilidad de recurrencia de los síntomas después de una mejoría inicial"
+    ],
+    "pruebas": [
+      "RT-PCR para Oropouche",
+      "Hemograma",
+      "Pruebas para dengue"
+    ],
+    "consideraciones": "Puede confundirse clínicamente con dengue y otras arbovirosis. La confirmación requiere pruebas de laboratorio apropiadas y su interpretación según el momento de evolución."
+  },
+  "chikungunya": {
+    "nombre": "Chikungunya",
+    "categoria": "Arbovirosis",
+    "descripcion": "Infección viral transmitida principalmente por mosquitos del género Aedes.",
+    "agente": "Virus chikungunya (CHIKV)",
+    "vector": "Aedes aegypti y Aedes albopictus",
+    "manifestaciones": [
+      "Fiebre",
+      "Artralgia intensa",
+      "Inflamación articular",
+      "Mialgia",
+      "Cefalea",
+      "Exantema"
+    ],
+    "pistas": [
+      "Dolor articular intenso",
+      "Inflamación de articulaciones",
+      "Limitación funcional por artralgia"
+    ],
+    "pruebas": [
+      "RT-PCR para chikungunya",
+      "IgM para chikungunya",
+      "Hemograma"
+    ],
+    "consideraciones": "La intensidad de las manifestaciones articulares puede orientar el diagnóstico diferencial, pero no lo confirma. La selección de pruebas depende del tiempo de evolución."
+  },
+  "zika": {
+    "nombre": "Zika",
+    "categoria": "Arbovirosis",
+    "descripcion": "Infección viral transmitida principalmente por mosquitos del género Aedes.",
+    "agente": "Virus Zika (ZIKV)",
+    "vector": "Aedes aegypti y Aedes albopictus",
+    "manifestaciones": [
+      "Exantema",
+      "Prurito",
+      "Conjuntivitis no purulenta",
+      "Fiebre",
+      "Artralgia",
+      "Cefalea"
+    ],
+    "pistas": [
+      "Exantema con prurito",
+      "Conjuntivitis",
+      "Fiebre generalmente de menor intensidad"
+    ],
+    "pruebas": [
+      "RT-PCR para Zika",
+      "IgM para Zika"
+    ],
+    "consideraciones": "Debe tenerse especial precaución ante el embarazo por los posibles riesgos asociados a la infección. La interpretación de pruebas serológicas debe considerar posibles reacciones cruzadas con otros flavivirus."
+  },
+  "fiebre_amarilla": {
+    "nombre": "Fiebre amarilla",
+    "categoria": "Arbovirosis",
+    "descripcion": "Enfermedad viral transmitida por mosquitos infectados, con ciclos de transmisión selvático y urbano.",
+    "agente": "Virus de la fiebre amarilla",
+    "vector": "Haemagogus y Sabethes en el ciclo selvático de América; Aedes aegypti en el ciclo urbano.",
+    "manifestaciones": [
+      "Fiebre",
+      "Cefalea",
+      "Mialgia",
+      "Náuseas",
+      "Vómitos",
+      "Ictericia en casos graves"
+    ],
+    "pistas": [
+      "Antecedente epidemiológico de exposición",
+      "Ictericia",
+      "Manifestaciones hemorrágicas o compromiso orgánico",
+      "Antecedente de vacunación y desplazamiento a zonas de riesgo"
+    ],
+    "pruebas": [
+      "RT-PCR para fiebre amarilla",
+      "Pruebas serológicas"
+    ],
+    "consideraciones": "La sospecha de fiebre amarilla requiere evaluación clínica y notificación conforme a los protocolos de salud pública. La vacunación es un antecedente epidemiológico importante."
+  },
+  "mayaro": {
+    "nombre": "Mayaro",
+    "categoria": "Arbovirosis",
+    "descripcion": "Infección viral transmitida principalmente por mosquitos asociados a ambientes selváticos.",
+    "agente": "Virus Mayaro (MAYV)",
+    "vector": "Mosquitos del género Haemagogus, entre otros vectores potenciales",
+    "manifestaciones": [
+      "Fiebre",
+      "Artralgia",
+      "Mialgia",
+      "Cefalea",
+      "Exantema"
+    ],
+    "pistas": [
+      "Exposición en zonas selváticas",
+      "Dolor articular",
+      "Cuadro clínico similar a otras arbovirosis"
+    ],
+    "pruebas": [
+      "RT-PCR para Mayaro",
+      "Pruebas serológicas"
+    ],
+    "consideraciones": "Su presentación puede confundirse con otras arbovirosis. El contexto epidemiológico y las pruebas de laboratorio son importantes para orientar su identificación."
+  },
+  "malaria": {
+    "nombre": "Malaria",
+    "categoria": "Diagnóstico diferencial no arboviral",
+    "descripcion": "Enfermedad parasitaria transmitida por la picadura de mosquitos Anopheles infectados.",
+    "agente": "Parásitos del género Plasmodium",
+    "vector": "Mosquitos del género Anopheles",
+    "manifestaciones": [
+      "Fiebre",
+      "Escalofríos",
+      "Sudoración",
+      "Cefalea",
+      "Malestar general"
+    ],
+    "pistas": [
+      "Antecedente de exposición en zona de transmisión",
+      "Episodios febriles",
+      "Necesidad de búsqueda del parásito"
+    ],
+    "pruebas": [
+      "Gota gruesa",
+      "Prueba rápida para malaria"
+    ],
+    "consideraciones": "Debe considerarse en pacientes con fiebre y exposición epidemiológica compatible. La sospecha requiere evaluación y confirmación parasitológica según los protocolos aplicables."
+  },
+  "leptospirosis": {
+    "nombre": "Leptospirosis",
+    "categoria": "Diagnóstico diferencial no arboviral",
+    "descripcion": "Infección bacteriana asociada a la exposición a agua o suelos contaminados con orina de animales infectados.",
+    "agente": "Bacterias del género Leptospira",
+    "vector": "No aplica: transmisión por exposición ambiental, principalmente a través de agua o suelos contaminados.",
+    "manifestaciones": [
+      "Fiebre",
+      "Cefalea",
+      "Mialgia",
+      "Dolor en pantorrillas",
+      "Sufusión conjuntival",
+      "Ictericia en casos graves"
+    ],
+    "pistas": [
+      "Exposición a aguas potencialmente contaminadas",
+      "Dolor muscular intenso, especialmente en pantorrillas",
+      "Antecedentes de contacto con animales o ambientes de riesgo"
+    ],
+    "pruebas": [
+      "PCR para Leptospira",
+      "Serología para Leptospira"
+    ],
+    "consideraciones": "Debe incluirse en el diagnóstico diferencial de síndromes febriles según la exposición y la evolución clínica. La elección de pruebas depende de la fase de la enfermedad."
+  }
+}
